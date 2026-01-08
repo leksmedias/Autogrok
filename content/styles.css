@@ -1,0 +1,154 @@
+/* AutoGrok Content Script Styles */
+
+.autogrok-floating-panel {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 320px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  z-index: 999999;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.autogrok-floating-panel.minimized {
+  width: 200px;
+}
+
+.autogrok-floating-panel.minimized .autogrok-panel-content {
+  display: none;
+}
+
+.autogrok-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: move;
+}
+
+.autogrok-panel-title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.autogrok-panel-minimize {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  transition: background 0.2s;
+}
+
+.autogrok-panel-minimize:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.autogrok-panel-content {
+  padding: 16px;
+}
+
+.autogrok-panel-status {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+
+.autogrok-panel-task {
+  font-size: 13px;
+  margin-bottom: 12px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  min-height: 20px;
+}
+
+.autogrok-panel-progress {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.autogrok-progress-bar {
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 3px;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.autogrok-panel-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.autogrok-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.autogrok-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.autogrok-btn:active {
+  transform: translateY(0);
+}
+
+.autogrok-btn-pause {
+  background: rgba(255, 193, 7, 0.3);
+}
+
+.autogrok-btn-pause:hover {
+  background: rgba(255, 193, 7, 0.5);
+}
+
+.autogrok-btn-stop {
+  background: rgba(244, 67, 54, 0.3);
+}
+
+.autogrok-btn-stop:hover {
+  background: rgba(244, 67, 54, 0.5);
+}
+
+/* Animations */
+@keyframes autogrok-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.autogrok-panel-status.processing {
+  animation: autogrok-pulse 2s infinite;
+}
+
+/* Make panel draggable visual feedback */
+.autogrok-panel-header:hover {
+  background: rgba(255, 255, 255, 0.05);
+}

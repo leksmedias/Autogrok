@@ -1,0 +1,67 @@
+{
+  "manifest_version": 3,
+  "name": "AutoGrok - Grok Efficiency Booster",
+  "version": "1.0.0",
+  "description": "Boost your Grok productivity with batch operations, auto-download, prompt management, and advanced editing features.",
+  "permissions": [
+    "storage",
+    "downloads",
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://grok.x.ai/*",
+    "https://x.ai/*",
+    "https://*.x.ai/*"
+  ],
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://grok.x.ai/*",
+        "https://x.ai/*",
+        "https://*.x.ai/*"
+      ],
+      "js": [
+        "shared/constants.js",
+        "shared/utils.js",
+        "content/content-script.js"
+      ],
+      "css": [
+        "content/styles.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "assets/icons/icon16.png",
+      "48": "assets/icons/icon48.png",
+      "128": "assets/icons/icon128.png"
+    }
+  },
+  "options_page": "options/options.html",
+  "icons": {
+    "16": "assets/icons/icon16.png",
+    "48": "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "task-manager/task-manager.html",
+        "assets/*"
+      ],
+      "matches": [
+        "https://grok.x.ai/*",
+        "https://x.ai/*",
+        "https://*.x.ai/*"
+      ]
+    }
+  ]
+}

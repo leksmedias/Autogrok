@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoGrok</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <div class="popup-header">
+      <h1 class="popup-title">AutoGrok</h1>
+      <div class="popup-subtitle">Grok Efficiency Booster</div>
+    </div>
+
+    <!-- Status Section -->
+    <div class="popup-section">
+      <div class="status-card">
+        <div class="status-indicator" id="statusIndicator">
+          <span class="status-dot"></span>
+          <span class="status-text" id="statusText">Idle</span>
+        </div>
+        <div class="status-info">
+          <div class="stat-item">
+            <span class="stat-label">Tasks:</span>
+            <span class="stat-value" id="totalTasks">0</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Pending:</span>
+            <span class="stat-value" id="pendingTasks">0</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Completed:</span>
+            <span class="stat-value" id="completedTasks">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Current Task -->
+    <div class="popup-section" id="currentTaskSection" style="display: none;">
+      <div class="current-task">
+        <div class="task-label">Current Task:</div>
+        <div class="task-prompt" id="currentTaskPrompt">-</div>
+      </div>
+    </div>
+
+    <!-- Queue Controls -->
+    <div class="popup-section">
+      <div class="control-buttons">
+        <button id="startBtn" class="btn btn-primary">
+          <span class="btn-icon">▶</span>
+          Start Queue
+        </button>
+        <button id="pauseBtn" class="btn btn-secondary" style="display: none;">
+          <span class="btn-icon">⏸</span>
+          Pause
+        </button>
+        <button id="stopBtn" class="btn btn-danger" style="display: none;">
+          <span class="btn-icon">⏹</span>
+          Stop
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick Add Task -->
+    <div class="popup-section">
+      <div class="quick-add">
+        <label class="input-label">Quick Add Task:</label>
+        <textarea
+          id="quickPrompt"
+          class="input-textarea"
+          placeholder="Enter prompt here..."
+          rows="3"
+        ></textarea>
+        <div class="quick-add-controls">
+          <select id="taskType" class="input-select">
+            <option value="text-to-image">Text to Image</option>
+            <option value="text-to-video">Text to Video</option>
+            <option value="image-to-video">Image to Video</option>
+            <option value="image-to-image">Image to Image</option>
+          </select>
+          <button id="addTaskBtn" class="btn btn-small btn-primary">Add Task</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="popup-section">
+      <div class="quick-links">
+        <button id="taskManagerBtn" class="link-btn">
+          <span class="link-icon">📋</span>
+          Task Manager
+        </button>
+        <button id="templatesBtn" class="link-btn">
+          <span class="link-icon">📝</span>
+          Templates
+        </button>
+        <button id="downloadsBtn" class="link-btn">
+          <span class="link-icon">⬇️</span>
+          Downloads
+        </button>
+        <button id="settingsBtn" class="link-btn">
+          <span class="link-icon">⚙️</span>
+          Settings
+        </button>
+      </div>
+    </div>
+
+    <!-- Statistics -->
+    <div class="popup-section">
+      <div class="statistics">
+        <div class="stat-box">
+          <div class="stat-number" id="statGenerated">0</div>
+          <div class="stat-desc">Generated</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number" id="statDownloaded">0</div>
+          <div class="stat-desc">Downloaded</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number" id="statFailed">0</div>
+          <div class="stat-desc">Failed</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="popup-footer">
+      <span class="version">v1.0.0</span>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
