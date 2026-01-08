@@ -7,6 +7,11 @@ async function initialize() {
   await loadSettings();
   setupTabs();
   setupEventListeners();
+
+  // Initialize template manager
+  if (typeof initializeTemplateManager === 'function') {
+    await initializeTemplateManager();
+  }
 }
 
 /**

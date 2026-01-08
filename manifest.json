@@ -29,6 +29,8 @@
       "js": [
         "shared/constants.js",
         "shared/utils.js",
+        "shared/image-handler.js",
+        "content/infinite-scroll-handler.js",
         "content/content-script.js"
       ],
       "css": [

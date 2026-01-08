@@ -79,13 +79,103 @@
     <div id="templates" class="tab-content">
       <section class="section">
         <h2 class="section-title">Prompt Templates</h2>
-        <p class="section-desc">Create reusable prompt templates with prefixes and suffixes</p>
+        <p class="section-desc">Create reusable prompt templates with variables for batch generation</p>
 
         <div id="templatesList" class="templates-list">
           <!-- Templates will be inserted here -->
         </div>
 
         <button id="addTemplateBtn" class="btn btn-primary">+ Add Template</button>
+      </section>
+
+      <!-- Template Editor Modal (Hidden by default) -->
+      <div id="templateEditorModal" class="modal" style="display: none;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="templateEditorTitle">Add Template</h3>
+            <button class="modal-close" id="closeTemplateEditor">&times;</button>
+          </div>
+
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label">Template Name</label>
+              <input type="text" id="templateName" class="input-text" placeholder="My Template">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Prefix</label>
+              <input type="text" id="templatePrefix" class="input-text" placeholder="Add before prompt (optional)">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Suffix</label>
+              <input type="text" id="templateSuffix" class="input-text" placeholder="Add after prompt (optional)">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Variables</label>
+              <p class="form-desc">Add variables like {style}, {quality}, etc. Use in your prompts!</p>
+
+              <div id="variablesList" class="variables-list">
+                <!-- Variables will be inserted here -->
+              </div>
+
+              <button id="addVariableBtn" class="btn btn-secondary btn-small">+ Add Variable</button>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Preview</label>
+              <div class="template-preview">
+                <input type="text" id="previewPrompt" class="input-text" placeholder="Enter a test prompt..." value="a beautiful landscape">
+                <div id="previewOutput" class="preview-output">
+                  <!-- Preview will be shown here -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button id="cancelTemplateBtn" class="btn btn-secondary">Cancel</button>
+            <button id="saveTemplateBtn" class="btn btn-primary">Save Template</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Batch Generator -->
+      <section class="section">
+        <h2 class="section-title">Batch Prompt Generator</h2>
+        <p class="section-desc">Generate multiple prompts from templates and variables</p>
+
+        <div class="form-group">
+          <label class="form-label">Base Prompts (one per line)</label>
+          <textarea id="batchPrompts" class="input-textarea" rows="5" placeholder="landscape&#10;portrait&#10;abstract art"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Apply Template</label>
+          <select id="batchTemplate" class="input-select">
+            <option value="">None</option>
+            <!-- Templates will be populated here -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="setting-label">
+            <input type="checkbox" id="generateCombinations">
+            Generate all variable combinations
+          </label>
+          <p class="form-desc">Create tasks for every combination of variables</p>
+        </div>
+
+        <div class="batch-actions">
+          <button id="previewBatchBtn" class="btn btn-secondary">Preview</button>
+          <button id="generateBatchBtn" class="btn btn-primary">Generate Tasks</button>
+        </div>
+
+        <div id="batchPreview" class="batch-preview" style="display: none;">
+          <h4>Preview:</h4>
+          <div id="batchPreviewContent" class="batch-preview-content"></div>
+        </div>
       </section>
     </div>
 
@@ -196,6 +286,8 @@
     </footer>
   </div>
 
+  <script src="../shared/template-engine.js"></script>
+  <script src="template-manager.js"></script>
   <script src="options.js"></script>
 </body>
 </html>

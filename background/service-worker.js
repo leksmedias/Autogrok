@@ -50,6 +50,9 @@ async function handleMessage(message, sender) {
     case 'ADD_TASK':
       return await taskQueue.addTask(data);
 
+    case 'ADD_TASKS':
+      return await taskQueue.addTasks(data);
+
     case 'REMOVE_TASK':
       return await taskQueue.removeTask(data.taskId);
 

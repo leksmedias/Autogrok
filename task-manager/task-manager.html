@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoGrok Task Manager</title>
+  <link rel="stylesheet" href="task-manager.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <h1 class="title">Task Manager</h1>
+        <div class="header-actions">
+          <button id="refreshBtn" class="btn btn-icon" title="Refresh">
+            <span>↻</span>
+          </button>
+          <button id="settingsBtn" class="btn btn-icon" title="Settings">
+            <span>⚙</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Status Bar -->
+      <div class="status-bar">
+        <div class="status-item">
+          <span class="status-label">Queue Status:</span>
+          <span class="status-value" id="queueStatus">Idle</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Total:</span>
+          <span class="status-value" id="totalTasks">0</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Pending:</span>
+          <span class="status-value" id="pendingTasks">0</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Processing:</span>
+          <span class="status-value" id="processingTasks">0</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Completed:</span>
+          <span class="status-value" id="completedTasks">0</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Failed:</span>
+          <span class="status-value" id="failedTasks">0</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Controls -->
+    <div class="controls">
+      <div class="controls-left">
+        <button id="startQueueBtn" class="btn btn-primary">
+          <span>▶</span> Start Queue
+        </button>
+        <button id="pauseQueueBtn" class="btn btn-warning" style="display: none;">
+          <span>⏸</span> Pause
+        </button>
+        <button id="stopQueueBtn" class="btn btn-danger" style="display: none;">
+          <span>⏹</span> Stop
+        </button>
+      </div>
+
+      <div class="controls-right">
+        <select id="filterStatus" class="select">
+          <option value="all">All Tasks</option>
+          <option value="pending">Pending</option>
+          <option value="processing">Processing</option>
+          <option value="completed">Completed</option>
+          <option value="failed">Failed</option>
+        </select>
+
+        <button id="clearCompletedBtn" class="btn btn-secondary">
+          Clear Completed
+        </button>
+
+        <button id="addTaskBtn" class="btn btn-primary">
+          + Add Task
+        </button>
+      </div>
+    </div>
+
+    <!-- Task List -->
+    <div class="task-list-container">
+      <div id="taskList" class="task-list">
+        <!-- Tasks will be rendered here -->
+      </div>
+
+      <div id="emptyState" class="empty-state" style="display: none;">
+        <div class="empty-icon">📋</div>
+        <h3>No tasks yet</h3>
+        <p>Add tasks to get started with batch automation!</p>
+        <button class="btn btn-primary" onclick="document.getElementById('addTaskBtn').click()">
+          + Add Your First Task
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Task Modal -->
+  <div id="addTaskModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Add Task</h3>
+        <button class="modal-close" id="closeAddTaskModal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Task Type</label>
+          <select id="taskType" class="select">
+            <option value="text-to-image">Text to Image</option>
+            <option value="text-to-video">Text to Video</option>
+            <option value="image-to-video">Image to Video</option>
+            <option value="image-to-image">Image to Image</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Prompt</label>
+          <textarea id="taskPrompt" class="textarea" rows="4" placeholder="Enter your prompt..."></textarea>
+        </div>
+
+        <div class="form-group" id="imageUploadGroup" style="display: none;">
+          <label class="form-label">Upload Images</label>
+          <input type="file" id="imageUpload" class="file-input" accept="image/*" multiple>
+          <div id="imagePreview" class="image-preview"></div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button id="cancelAddTaskBtn" class="btn btn-secondary">Cancel</button>
+        <button id="confirmAddTaskBtn" class="btn btn-primary">Add Task</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="task-manager.js"></script>
+</body>
+</html>
